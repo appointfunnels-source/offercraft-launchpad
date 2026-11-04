@@ -6,14 +6,15 @@ const MODEL = "gpt-6-luna";
 const RULES = `Writing rules (strict):
 - Never use dashes of any kind (no em dash, en dash, or hyphen used as punctuation). Use commas or full stops instead.
 - Never write placeholders or template variables like {{name}}, [Company], <city>. Always write finished, concrete copy.
-- When a case study or result is needed, invent a realistic named company in this niche with concrete numbers and timeframes.
+- When a case study, testimonial or result is needed, invent a realistic named company in this niche with concrete numbers and timeframes.
+- Never add disclaimers like "illustrative example", "fictional", "not a real client" or similar anywhere. Write everything as confident finished copy.
 - Focus on the product's actual results, not vague "helping people" statements.
 - Return only valid JSON.`;
 
 function clean<T>(v: T): T {
   return JSON.parse(
     JSON.stringify(v)
-      .replace(/\s*[\u2014\u2013]\s*/g, ", ")
+      .replace(/\s*[—–]\s*/g, ", ")
       .replace(/ - /g, ", ")
       .replace(/\{\{[^}]*\}\}/g, ""),
   );
@@ -71,18 +72,19 @@ export const generateOffers = createServerFn({ method: "POST" })
 Product or service: ${data.product}
 Extra factors: ${data.details || "none"}
 
-Create 4 offers as JSON: {"offers":[...]} with exactly these types in order:
-1. "Results Based Risk Free Fee" (Hormozi recommended, client pays only on results). This offer MUST be built on four pillars, each stated plainly inside its fields:
+Create 5 offers as JSON: {"offers":[...]} with exactly these types in order:
+1. "Grand Slam Offer" (the classic Hormozi value stack offer, so good people feel stupid saying no). Stack the dream outcome, a massive value stack of bonuses, an outrageously strong guarantee, scarcity and urgency, and premium price anchoring. Put the full value stack in "bonuses" (5 to 7 stacked items, each with its own value), the bold guarantee in "guarantee", and the anchored premium pricing with payment options in "pricing".
+2. "Results Based Risk Free Fee" (Hormozi recommended, client pays only on results). This offer MUST be built on four pillars, each stated plainly inside its fields:
    a. Specific Result: a measurable outcome the client cares about (e.g. 30+ qualified appointments, $50k per month recovered revenue). Put it in "promise".
    b. Defined Timeframe: make it time bound, 60 to 90 days. Speed sells. Put it in "promise".
    c. Clear Mechanism: the unique system that produces the result (e.g. AI automation plus targeted outbound plus follow up engine). Explain how it produces the result. Put it in "mechanism".
    d. Risk Reversal: remove all hesitation, keep working until the client sees results or work for free. Put it in "guarantee".
-2. "Fire One Guy" (replace the cost of one employee, show the salary math)
-3. "Case Study" (offer to work at a discount or free in exchange for a case study, include a full invented case study)
-4. "Simple Offer" (one clear sentence offer, plain and direct)
+3. "Fire One Guy" (replace the cost of one employee, show the salary math)
+4. "Case Study" (offer to work at a discount or free in exchange for a case study, include a full invented case study)
+5. "Simple Offer" (one clear sentence offer, plain and direct)
 Each offer object: {"id":"slug","type":"...","name":"catchy offer name","headline":"...","promise":"specific measurable result with timeframe","mechanism":"the unique system and how it produces the result","guarantee":"...","pricing":"...","bonuses":["3 bonuses"],"caseStudy":{"company":"invented company name","before":"...","after":"...","result":"numbers"},"sms":"cold SMS pitch"}.
 The SMS must stay simple and short, but it must include one or two concrete details from the offer, like the specific result number and the timeframe. No vague claims. Under 400 characters.
-Only the "Case Study" offer includes the caseStudy field. The other three offers must NOT have a caseStudy field at all.`);
+Only the "Case Study" offer includes the caseStudy field. The other four offers must NOT have a caseStudy field at all.`);
     return out as { offers: Offer[] };
   });
 
@@ -97,7 +99,7 @@ Chosen offer: ${data.offer}
 
 Build the full go to market kit as JSON:
 {"insights":{"companyName":"invented company in this niche that sells this","overview":"...","idealClient":"...","painPoints":["5"],"desires":["4"],"marketSize":"...","whyNow":"..."},
-"landingPage":{"brand":"same companyName","heroHeadline":"...","heroSub":"...","cta":"...","benefits":[{"title":"...","text":"..."}x3],"steps":[{"title":"...","text":"..."}x3],"testimonials":[{"name":"...","role":"...","quote":"..."}x2],"guarantee":"...","finalCta":"..."},
+"website":{"brand":"same companyName","tagline":"short slogan","heroHeadline":"...","heroSub":"...","cta":"...","stats":[{"value":"30+","label":"..."}x4],"services":[{"title":"...","text":"..."}x3],"about":{"title":"...","text":"...","points":["3 proof points"]},"steps":[{"title":"...","text":"..."}x4],"testimonials":[{"name":"...","role":"...","quote":"..."}x3],"faq":[{"q":"...","a":"..."}x4],"guarantee":"...","finalHeadline":"...","finalCta":"...","footer":"one line about the company"},
 "email":{"subject":"...","preview":"...","body":"full cold email with line breaks, signed by a real sounding name"},
 "metaAds":[{"angle":"...","hook":"...","primaryText":"...","headline":"...","cta":"...","visual":"description of the creative image"}x3],
 "bios":{"instagram":"under 150 chars","facebook":"2 to 3 sentences"},
