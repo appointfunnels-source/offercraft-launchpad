@@ -82,7 +82,7 @@ Create 4 offers as JSON: {"offers":[...]} with exactly these types in order:
 4. "Simple Offer" (one clear sentence offer, plain and direct)
 Each offer object: {"id":"slug","type":"...","name":"catchy offer name","headline":"...","promise":"specific measurable result with timeframe","mechanism":"the unique system and how it produces the result","guarantee":"...","pricing":"...","bonuses":["3 bonuses"],"caseStudy":{"company":"invented company name","before":"...","after":"...","result":"numbers"},"sms":"cold SMS pitch"}.
 The SMS must stay simple and short, but it must include one or two concrete details from the offer, like the specific result number and the timeframe. No vague claims. Under 400 characters.
-Every offer must include caseStudy with an invented company and real looking numbers.`);
+Only the "Case Study" offer includes the caseStudy field. The other three offers must NOT have a caseStudy field at all.`);
     return out as { offers: Offer[] };
   });
 
