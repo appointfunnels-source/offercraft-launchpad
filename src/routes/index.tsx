@@ -138,7 +138,7 @@ function Index() {
   const [kit, setKit] = useState<any>(null);
   const [loading, setLoading] = useState<"" | "offers" | "kit">("");
   const [err, setErr] = useState("");
-  const [theme, setTheme] = useState<Theme>(THEMES[0]);
+  const [theme, setTheme] = useState<Theme>(THEMES[0]!);
 
   async function makeOffers() {
     setErr(""); setLoading("offers"); setOffers(null); setSelected(null); setKit(null);
