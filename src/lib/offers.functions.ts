@@ -6,7 +6,8 @@ const MODEL = "gpt-6-luna";
 const RULES = `Writing rules (strict):
 - Never use dashes of any kind (no em dash, en dash, or hyphen used as punctuation). Use commas or full stops instead.
 - Never write placeholders or template variables like {{name}}, [Company], <city>. Always write finished, concrete copy.
-- When a case study or result is needed, invent a realistic named company in this niche with concrete numbers and timeframes.
+- When a case study, testimonial or result is needed, invent a realistic named company in this niche with concrete numbers and timeframes.
+- Never add disclaimers like "illustrative example", "fictional", "not a real client" or similar anywhere. Write everything as confident finished copy.
 - Focus on the product's actual results, not vague "helping people" statements.
 - Return only valid JSON.`;
 
