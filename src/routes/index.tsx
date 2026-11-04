@@ -106,6 +106,7 @@ function Index() {
                   <p className="mt-2 font-medium">{o.headline}</p>
                   <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
                     <li><b className="text-foreground">Promise:</b> {o.promise}</li>
+                    {o.mechanism && <li><b className="text-foreground">How it works:</b> {o.mechanism}</li>}
                     <li><b className="text-foreground">Guarantee:</b> {o.guarantee}</li>
                     <li><b className="text-foreground">Pricing:</b> {o.pricing}</li>
                     <li><b className="text-foreground">Bonuses:</b> {o.bonuses?.join(", ")}</li>

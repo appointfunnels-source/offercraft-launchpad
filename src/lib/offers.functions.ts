@@ -58,6 +58,7 @@ export type Offer = {
   promise: string;
   guarantee: string;
   pricing: string;
+  mechanism: string;
   bonuses: string[];
   caseStudy?: { company: string; before: string; after: string; result: string };
   sms: string;
@@ -71,12 +72,17 @@ Product or service: ${data.product}
 Extra factors: ${data.details || "none"}
 
 Create 4 offers as JSON: {"offers":[...]} with exactly these types in order:
-1. "Results Based Risk Free Fee" (Hormozi recommended, client pays only on results)
+1. "Results Based Risk Free Fee" (Hormozi recommended, client pays only on results). This offer MUST be built on four pillars, each stated plainly inside its fields:
+   a. Specific Result: a measurable outcome the client cares about (e.g. 30+ qualified appointments, $50k per month recovered revenue). Put it in "promise".
+   b. Defined Timeframe: make it time bound, 60 to 90 days. Speed sells. Put it in "promise".
+   c. Clear Mechanism: the unique system that produces the result (e.g. AI automation plus targeted outbound plus follow up engine). Explain how it produces the result. Put it in "mechanism".
+   d. Risk Reversal: remove all hesitation, keep working until the client sees results or work for free. Put it in "guarantee".
 2. "Fire One Guy" (replace the cost of one employee, show the salary math)
 3. "Case Study" (offer to work at a discount or free in exchange for a case study, include a full invented case study)
 4. "Simple Offer" (one clear sentence offer, plain and direct)
-Each offer object: {"id":"slug","type":"...","name":"catchy offer name","headline":"...","promise":"specific measurable result with timeframe","guarantee":"...","pricing":"...","bonuses":["3 bonuses"],"caseStudy":{"company":"invented company name","before":"...","after":"...","result":"numbers"},"sms":"short SMS pitch under 300 characters"}.
-Every offer must include caseStudy with an invented company and real looking numbers.`);
+Each offer object: {"id":"slug","type":"...","name":"catchy offer name","headline":"...","promise":"specific measurable result with timeframe","mechanism":"the unique system and how it produces the result","guarantee":"...","pricing":"...","bonuses":["3 bonuses"],"caseStudy":{"company":"invented company name","before":"...","after":"...","result":"numbers"},"sms":"cold SMS pitch"}.
+The SMS must stay simple and short, but it must include one or two concrete details from the offer, like the specific result number and the timeframe. No vague claims. Under 400 characters.
+Only the "Case Study" offer includes the caseStudy field. The other three offers must NOT have a caseStudy field at all.`);
     return out as { offers: Offer[] };
   });
 
